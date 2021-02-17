@@ -47,7 +47,7 @@ your own `ProductFn` class. You can take a look at `BlockWisePF` or `WYSDeepWalk
 
 ## File Structure / Documentation
 
- * File tf_svd.py contains the main logic for TensorFlow implementation of
+ * File [tf_svd.py](https://github.com/samihaija/tf-fsvd/blob/main/tf_svd.py) contains the main logic for TensorFlow implementation of
    Functional SVD (function `fsvd`), as well as a few classes for constructing
    implicit matrices.
    * `SparseMatrixPF`: when implicit matrix is a pre-computed sparse matrix.
@@ -55,11 +55,11 @@ your own `ProductFn` class. You can take a look at `BlockWisePF` or `WYSDeepWalk
      sparse tensors.
    * `BlockWisePF`: when implicit matrix is is column-wise concatenation of other
      implicit matrices. The concatenation is computed by suppling a list of `ProductFn`'s
- * Directory implementations: contains implementations of simple methods employing `fsvd`.
- * Directory baselines: source code adapting competitive methods to produce metrics
+ * Directory [implementations](https://github.com/samihaija/tf-fsvd/tree/main/implementations): contains implementations of simple methods employing `fsvd`.
+ * Directory [baselines](https://github.com/samihaija/tf-fsvd/tree/main/baselines): source code adapting competitive methods to produce metrics
    we report in our paper (time and accuracy).
- * Directory experiments: Shell scripts for running baselines and our implementations.
- * Directory results: Output directory containing results.
+ * Directory [experiments](https://github.com/samihaija/tf-fsvd/tree/main/experiments): Shell scripts for running baselines and our implementations.
+ * Directory [results](https://github.com/samihaija/tf-fsvd/tree/main/results): Output directory containing results.
 
 
 ## Running Experiments
