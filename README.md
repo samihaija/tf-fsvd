@@ -71,7 +71,7 @@ You can run the script for training on AsympProj datasets and measuring test ROC
 
     python3 implementations/linkpred_asymproj.py
 
-You can append flag `--help` to above to change options such as the dataset or the SVD rank.
+You can append flag `--help` to above to see which flags you can set for changing the dataset or the SVD rank.
 
 You can run sweep on svd rank, for each of those datasets, by invoking:
 
@@ -101,7 +101,7 @@ You can run the script for training and testing on planetoid datasets as:
 
     python3 implementations/node_ssc_planetoid.py
 
-You may append with `--help` to change options such as the dataset or number of layers.
+You can append flag `--help` to above to see which flags you can set for changing the dataset or the number of layers.
 
 **ADD SWEEP SCRIPTS AND BASELINES **
 
