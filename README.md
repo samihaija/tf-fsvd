@@ -1,6 +1,6 @@
 # tf-fsvd
 TensorFlow Implementation of Functional Singular Value Decomposition for paper
-Fast Graph Learning
+[**Fast Graph Learning with Unique Optimal Solutions**](https://arxiv.org/abs/2102.08530)
 
 ## Cite
 If you find our code useful, you may cite us as:
@@ -65,7 +65,13 @@ your own `ProductFn` class. You can take a look at `BlockWisePF` or `WYSDeepWalk
 ## Running Experiments
 
 ### ROC-AUC Link Prediction over AsymProj/WYS datasets
-These datasets are located in directory [datasets/asymproj](https://github.com/samihaija/tf-fsvd/tree/main/datasets/asymproj).
+The AsymProj datasets are located in directory [datasets/asymproj](https://github.com/samihaija/tf-fsvd/tree/main/datasets/asymproj).
+
+You can run the script for training on AsympProj datasets and measuring test ROC-AUC as:
+
+    python3 implementations/linkpred_asymproj.py
+
+You can append flag `--help` to above to change options such as the dataset or the SVD rank.
 
 You can run sweep on svd rank, for each of those datasets, by invoking:
 
@@ -82,6 +88,7 @@ You can run sweep on svd rank, for each of those datasets, by invoking:
 
 and running all printed commands. Alternatively, you can pipe the output of above to bash. This should populate directory `results/linkpred_d_sweep/fsvd/`.
 
+** ADD BASELINES **
 
 ### Classification Experiments over Planetoid Citation datasets
 These datasets are from the planetoid paper. To obtain them, you should clone their repo:
@@ -90,8 +97,13 @@ These datasets are from the planetoid paper. To obtain them, you should clone th
     cd ~/data
     git clone git@github.com:kimiyoung/planetoid.git
 
+You can run the script for training and testing on planetoid datasets as:
 
-**WRITE ME**
+    python3 implementations/node_ssc_planetoid.py
+
+You may append with `--help` to change options such as the dataset or number of layers.
+
+**ADD SWEEP SCRIPTS AND BASELINES **
 
 ### HIT@20 over Drug-Drug Interaction Network
 WRITE ME 
