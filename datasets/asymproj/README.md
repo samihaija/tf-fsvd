@@ -14,3 +14,8 @@ Each directory contains 3 files:
 
 
 The union of the first two are the input graph. trainEdges = testEdges = testNegEdges (per WatchYourStep & AsymProj, mimicing node2vec). The last np file contains negative edges sampled uniformly at random from the graph compliment.
+
+## References:
+ * node2vec: Grover & Leskovec, *node2vec: Scalable Feature Learning for Networks*, KDD 2016
+ * AsymProj: Abu-El-Haija et al, *Learning Edge Representations via Low-Rank Asymmetric Projections*, CIKM 2017.
+ * WatchYourStep (WYS): Abu-El-Haija et al, *Watch Your Step: Learning Node Embeddings via Graph Attention*, NeurIPS 2018
