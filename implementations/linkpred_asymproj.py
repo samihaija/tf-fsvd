@@ -24,7 +24,7 @@ import tensorflow as tf
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import tf_svd
+import tf_fsvd
 
 
 if __name__ == '__main__':
@@ -44,12 +44,12 @@ def main(_):
   train_edges = np.load(os.path.join(dataset_dir, 'train.txt.npy'))
   train_edges = np.concatenate([train_edges, train_edges[:, ::-1]], axis=0)
   spa = scipy.sparse.csr_matrix((np.ones([len(train_edges)]), (train_edges[:, 0], train_edges[:, 1]) ))
-  mult_f = tf_svd.WYSDeepWalkPF(spa, window=FLAGS.window, mult_degrees=True,
-                                neg_sample_coef=FLAGS.neg_coef)
-  _ = tf_svd.fsvd(mult_f, 2, n_iter=1)  # Warm-up GPU
+  mult_f = tf_fsvd.WYSDeepWalkPF(spa, window=FLAGS.window, mult_degrees=True,
+                                 neg_sample_coef=FLAGS.neg_coef)
+  _ = tf_fsvd.fsvd(mult_f, 2, n_iter=1)  # Warm-up GPU
   print('training')
   started = time.time()
-  u, s, v = tf_svd.fsvd(mult_f, FLAGS.dim, n_iter=20, n_redundancy=max(10, FLAGS.dim) )
+  u, s, v = tf_fsvd.fsvd(mult_f, FLAGS.dim, n_iter=20, n_redundancy=max(10, FLAGS.dim) )
   train_time = time.time() - started
   print('  ... done training')
   
