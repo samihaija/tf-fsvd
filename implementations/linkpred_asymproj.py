@@ -30,7 +30,7 @@ import tf_svd
 if __name__ == '__main__':
   flags.DEFINE_string('dataset_name', 'ppi', 'Must be directory inside datasets_dir')
   flags.DEFINE_string(
-      'datasets_dir', '~/data/asymproj/datasets', 'Must be directory inside datasets_dir')
+      'datasets_dir', 'datasets/asymproj', 'Directory containing AsymProj datasets.')
   flags.DEFINE_integer('window', 5, 'Window for WYS approximation of DeepWalk.')
   flags.DEFINE_integer('dim', 30, '')
   flags.DEFINE_float('neg_coef', 3, '')
