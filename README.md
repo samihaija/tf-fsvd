@@ -67,12 +67,27 @@ your own `ProductFn` class. You can take a look at `BlockWisePF` or `WYSDeepWalk
 ### Results
 WRITE ME
 
-### ROC-AUC Link Prediction over [AsymProj] datasets
-WRITE ME
+### ROC-AUC Link Prediction over AsymProj/WYS datasets
+These datasets are located in directory [datasets/asymproj](https://github.com/samihaija/tf-fsvd/tree/main/datasets/asymproj).
 
-### Classification Experiments over [Planetoid] Citation datasets
+You can run sweep on svd rank, for each of those datasets, by invoking:
 
-WRITE ME
+    python experiments/fsvd_linkpred_k_sweep.py
+
+and running all printed commands. Alternatively, you can pipe the output of above to bash. This should populate directory `results/linkpred_d_sweep/fsvd/`.
+
+For us, the time is dominated (by large) by the statement `import tensorflow as tf` (not by the actual model training!)
+
+### Classification Experiments over Planetoid Citation datasets
+These datasets are from the planetoid paper. To obtain them, you should clone their repo:
+
+    mkdir -p ~/data
+    cd ~/data
+    git clone git@github.com:kimiyoung/planetoid.git
+
+
+**WRITE ME**
 
 ### HIT@20 over Drug-Drug Interaction Network
 WRITE ME 
+
