@@ -32,8 +32,12 @@ if __name__ == '__main__':
   flags.DEFINE_string(
       'datasets_dir', 'datasets/asymproj', 'Directory containing AsymProj datasets.')
   flags.DEFINE_integer('window', 5, 'Window for WYS approximation of DeepWalk.')
-  flags.DEFINE_integer('dim', 30, '')
-  flags.DEFINE_float('neg_coef', 3, '')
+  flags.DEFINE_integer('dim', 30, 'Rank of SVD decomposition')
+  flags.DEFINE_float('neg_coef', 3,
+                     'The coefficient lambda, scaling term (1 - A). '
+                     'Choice of > 1 is justified as we pass mult_degrees=True '
+                     'to WYSDeepWalkPF, equivalent to starting number of walks '
+                     'equal to its degree.')
 FLAGS = flags.FLAGS
 
 
