@@ -9,7 +9,7 @@ If you find our code useful, you may cite us as:
       title={Fast Graph Learning with Unique Optimal Solutions},
       author={Sami Abu-El-Haija AND Valentino Crespi AND Greg Ver Steeg AND Aram Galstyan},
       year={2021},
-      booktitle={arxiv},
+      booktitle={arxiv:2102.08530},
     }
 
 ## Introduction
