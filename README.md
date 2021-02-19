@@ -24,7 +24,7 @@ matrix. Specifically, it should implement:
   1. `shape`: property should return the shape of the (implicit) matrix `M`.
 
 In most practical cases, `M` is implicit i.e. need not to be exactly computed.
-For consistency, such objects could inherit the abstract class `ProductFn`.
+For consistency, such objects could inherit the abstract class [`ProductFn`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py#L6..L33).
 
 
 
@@ -42,13 +42,13 @@ Suppose you have an explicit sparse matrix `mat`
 
 
 The intent of this utility is for implicit matrices. For which, you may implement
-your own `ProductFn` class. You can take a look at `BlockWisePF` or `WYSDeepWalkPF`.
+your own [`ProductFn`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py#L6..L33) class. You can take a look at [`BlockWisePF`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py#L167..L221) or [`WYSDeepWalkPF`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py#259).
 
 
 ## File Structure / Documentation
 
  * File [tf_fsvd.py](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py) contains the main logic for TensorFlow implementation of
-   Functional SVD (function `fsvd`), as well as a few classes for constructing
+   Functional SVD (function [`fsvd`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py#L39)), as well as a few classes for constructing
    implicit matrices.
    * `SparseMatrixPF`: when implicit matrix is a pre-computed sparse matrix.
      Using this class, you can now enjoy the equivalent of `tf.linalg.svd` on
