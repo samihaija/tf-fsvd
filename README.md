@@ -33,12 +33,12 @@ For consistency, such objects could inherit the abstract class `ProductFn`.
 Suppose you have an explicit sparse matrix `mat`
 
     import scipy.sparse
-    import tf_svd
+    import tf_fsvd
 
     m = scipy.sparse.csr_mat( ... )
-    fn = tf_svd.SparseMatrixPF(m)
+    fn = tf_fsvd.SparseMatrixPF(m)
 
-    u, s, v = tf_svd.fsvd(fn, k=20)  # Rank 20 decomposition
+    u, s, v = tf_fsvd.fsvd(fn, k=20)  # Rank 20 decomposition
 
 
 The intent of this utility is for implicit matrices. For which, you may implement
@@ -47,7 +47,7 @@ your own `ProductFn` class. You can take a look at `BlockWisePF` or `WYSDeepWalk
 
 ## File Structure / Documentation
 
- * File [tf_svd.py](https://github.com/samihaija/tf-fsvd/blob/main/tf_svd.py) contains the main logic for TensorFlow implementation of
+ * File [tf_fsvd.py](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py) contains the main logic for TensorFlow implementation of
    Functional SVD (function `fsvd`), as well as a few classes for constructing
    implicit matrices.
    * `SparseMatrixPF`: when implicit matrix is a pre-computed sparse matrix.
