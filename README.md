@@ -118,13 +118,13 @@ You can run the script for training and testing on planetoid datasets as:
 
 You can append flag `--help` to above to see which flags you can set for changing the dataset or the number of layers.
 
-You can sweep the number of layers and other hyperparameters by running this script:
+You can sweep the number of layers running:
 
-    python3 experiments/planetoid_hp_search.py # Directly invokes python many times
+    # Directly invokes python many times
+    LAYERS=`python3 -c "print(','.join(map(str, range(17))))"`
+    python3 experiments/planetoid_hp_search.py --wys_windows=1 --wys_neg_coefs=1 --layers=${LAYERS}
 
-If you only want to see the commands being run by above script, but **not** run the commands, you can:
+The script `experiments/planetoid_hp_search.py` directly invokes `implementations/node_ssc_planetoid.py`. You can visualize the accuracy VS depth curve by running:
 
-
-### HIT@20 over Drug-Drug Interaction Network
-WRITE ME 
+    python3 experiments/plot_sweep_depth_planetoid.py
 
