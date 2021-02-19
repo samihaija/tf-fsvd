@@ -88,7 +88,15 @@ You can run sweep on svd rank, for each of those datasets, by invoking:
 
 and running all printed commands. Alternatively, you can pipe the output of above to bash. This should populate directory `results/linkpred_d_sweep/fsvd/`.
 
-** ADD BASELINES **
+#### Baselines
+
+You can run the Watch Your Step baseline as:
+
+    bash experiments/baselines/run_wys.sh
+
+which runs only once for every link prediction dataset. Watch Your Step spends some time computing the transition matrix powers (T^2, .., T^5).
+
+
 
 ### Classification Experiments over Planetoid Citation datasets
 These datasets are from the planetoid paper. To obtain them, you should clone their repo:
@@ -103,7 +111,12 @@ You can run the script for training and testing on planetoid datasets as:
 
 You can append flag `--help` to above to see which flags you can set for changing the dataset or the number of layers.
 
-**ADD SWEEP SCRIPTS AND BASELINES **
+You can sweep the number of layers and other hyperparameters by running this script:
+
+    python3 experiments/planetoid_hp_search.py # Directly invokes python many times
+
+If you only want to see the commands being run by above script, but **not** run the commands, you can:
+
 
 ### HIT@20 over Drug-Drug Interaction Network
 WRITE ME 
