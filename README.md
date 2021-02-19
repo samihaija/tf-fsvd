@@ -51,8 +51,8 @@ your own [`ProductFn`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py
    Functional SVD (function [`fsvd`](https://github.com/samihaija/tf-fsvd/blob/main/tf_fsvd.py#L39)), as well as a few classes for constructing
    implicit matrices.
    * `SparseMatrixPF`: when implicit matrix is a pre-computed sparse matrix.
-     Using this class, you can now enjoy the equivalent of `tf.linalg.svd` on
-     sparse tensors.
+     Using this class, you can now enjoy the equivalent of [`tf.linalg.svd`](https://www.tensorflow.org/api_docs/python/tf/linalg/svd) on
+     **sparse tensors** :-).
    * `BlockWisePF`: when implicit matrix is is column-wise concatenation of other
      implicit matrices. The concatenation is computed by suppling a list of `ProductFn`'s
  * Directory [implementations](https://github.com/samihaija/tf-fsvd/tree/main/implementations): contains implementations of simple methods employing `fsvd`.
