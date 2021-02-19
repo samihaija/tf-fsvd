@@ -90,12 +90,19 @@ and running all printed commands. Alternatively, you can pipe the output of abov
 
 #### Baselines
 
-You can run the Watch Your Step baseline as:
+ * You can run the Watch Your Step baseline as:
+   
+        bash experiments/baselines/run_wys.sh
+   
+   which runs only once for every link prediction dataset. Watch Your Step spends some time computing the transition matrix    powers (T^2, .., T^5).
 
-    bash experiments/baselines/run_wys.sh
-
-which runs only once for every link prediction dataset. Watch Your Step spends some time computing the transition matrix powers (T^2, .., T^5).
-
+ * You can run NetMF baselines (both approximate and exact) as:
+ 
+       bash experiments/baselines/run_netmf.sh
+   
+ * You can run node2vec baseline as:
+ 
+       experiments/baselines/run_n2v.sh
 
 
 ### Classification Experiments over Planetoid Citation datasets
