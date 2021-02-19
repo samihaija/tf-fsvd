@@ -108,9 +108,8 @@ def IsDirected():
 def GetNumNodes():
   global NUM_NODES
   if NUM_NODES == 0:
-    index = pickle.load(
-        open(os.path.join(FLAGS.dataset_dir, 'index.pkl'), 'rb'))
-    NUM_NODES = len(index['index'])
+    train_edges = numpy.load(os.path.join(FLAGS.dataset_dir, 'train.txt.npy'))
+    NUM_NODES = train_edges.max() + 1
   return NUM_NODES
 
 
@@ -124,11 +123,10 @@ def GetOrMakeAdjacencyMatrix():
   a_file = os.path.join(FLAGS.dataset_dir, 'a.npy')
   if os.path.exists(a_file):
     return numpy.load(open(a_file, 'rb'))
-
-  num_nodes = GetNumNodes()
-  a = numpy.zeros(shape=(num_nodes, num_nodes), dtype='float32')
   train_edges = numpy.load(
       open(os.path.join(FLAGS.dataset_dir, 'train.txt.npy'), 'rb'))
+  num_nodes = GetNumNodes()
+  a = numpy.zeros(shape=(num_nodes, num_nodes), dtype='float32')
   a[train_edges[:, 0], train_edges[:, 1]] = 1.0
   if not IsDirected():
     a[train_edges[:, 1], train_edges[:, 0]] = 1.0
