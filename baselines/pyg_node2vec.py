@@ -17,12 +17,12 @@ import numpy as np
 
 flags.DEFINE_string(
     'dataset', 'ppi', 'Dataset name. One of AsymProj datasets.')
-flags.DEFINE_string('datasets_dir', '~/data/asymproj/datasets/',
+flags.DEFINE_string('datasets_dir', 'datasets/asymproj',
                     'Directory where all AsymProj datasets live, including --dataset')
 flags.DEFINE_integer(
-    'dim', 32, 'Dim of embedding')
+    'dim', 64, 'Dim of embedding')
 flags.DEFINE_integer('C', 5, 'context window.')
-flags.DEFINE_string('output_dir', 'results/pyg-node2vec', 'directory to output results')
+flags.DEFINE_string('output_dir', 'results/baselines/pyg-node2vec', 'directory to output results')
 flags.DEFINE_string('run', '', 'If set, will be added to output filename.')
 
 FLAGS = flags.FLAGS

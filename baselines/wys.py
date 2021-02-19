@@ -305,7 +305,7 @@ BEST_EVAL = None
 BEST_TF_PARAMS = None
 
 
-def RunEval(sess, g, test_pos_arr, test_neg_arr, train_pos_arr, train_neg_arr,
+def RunEval(sess, g, test_pos_arr, test_neg_arr,
             i, v_total_loss, v_objective_loss, eval_metrics, feed_dict):
   """Calls sess.run(g) and computes AUC metric for test and train."""
   scores = sess.run(g, feed_dict=feed_dict)
@@ -317,28 +317,16 @@ def RunEval(sess, g, test_pos_arr, test_neg_arr, train_pos_arr, train_neg_arr,
   test_y_pred = numpy.concatenate([test_neg_prods, test_pos_prods], 0)
   test_auc = metrics.roc_auc_score(test_y, test_y_pred)
 
-  # Compute train auc:
-  train_pos_prods = scores[train_pos_arr[:, 0], train_pos_arr[:, 1]]
-  train_neg_prods = scores[train_neg_arr[:, 0], train_neg_arr[:, 1]]
-  train_y = [0] * len(train_neg_prods) + [1] * len(train_pos_prods)
-  train_y_pred = numpy.concatenate([train_neg_prods, train_pos_prods], 0)
-  train_auc = metrics.roc_auc_score(train_y, train_y_pred)
-
-  LogMsg('@%i test/train auc=%f/%f obj.loss=%f total.loss=%f' %
-         (i, test_auc, train_auc, v_objective_loss, v_total_loss))
+  LogMsg('@%i test auc=%f -- train: obj.loss=%f total.loss=%f' %
+         (i, test_auc, v_objective_loss, v_total_loss))
 
   # Populate metrics.
-  eval_metrics['train auc'].append(float(train_auc))
   eval_metrics['test auc'].append(float(test_auc))
   eval_metrics['i'].append(i)
   eval_metrics['total loss'].append(float(v_total_loss))
   eval_metrics['objective loss'].append(float(v_objective_loss))
-  if train_auc > eval_metrics['best train auc']:
-    eval_metrics['best train auc'] = float(train_auc)
-    eval_metrics['test auc at best train'] = float(test_auc)
-    eval_metrics['i at best train'] = i
 
-  return train_auc
+  return v_objective_loss
 
 
 def main(argv=()):
@@ -382,9 +370,7 @@ def main(argv=()):
   test_pos_arr = numpy.load(open(test_pos_file, 'rb'))
 
   train_pos_file = os.path.join(FLAGS.dataset_dir, 'train.txt.npy')
-  train_neg_file = os.path.join(FLAGS.dataset_dir, 'train.neg.txt.npy')
   train_pos_arr = numpy.load(open(train_pos_file, 'rb'))
-  train_neg_arr = numpy.load(open(train_neg_file, 'rb'))
 
   sess = tf.Session()
   coord = tf.train.Coordinator()
@@ -408,7 +394,7 @@ def main(argv=()):
   all_variables = tf.trainable_variables() + (
       [tf.train.get_or_create_global_step()])
   best_train_values = None
-  best_train_auc = 0
+  best_train_loss = 999999999
 
   for i in range(FLAGS.max_number_of_steps):
     # import pdb; pdb.set_trace()
@@ -418,9 +404,9 @@ def main(argv=()):
       references['update'](sess)
 
     if i % 4 == 0:  # Compute eval every 4th step.
-      train_auc = RunEval(sess, g, test_pos_arr, test_neg_arr, train_pos_arr,
-                          train_neg_arr, i, v_total_loss, v_objective_loss,
-                          eval_metrics, feed_dict)
+      train_loss = RunEval(sess, g, test_pos_arr, test_neg_arr,
+                           i, v_total_loss, v_objective_loss,
+                           eval_metrics, feed_dict)
       if 'mults' in references:
         mults, normed_mults = sess.run((references['mults'],
                                         references['normed']))
@@ -428,8 +414,8 @@ def main(argv=()):
         eval_metrics['normed_mults'].append(
             list(map(float, list(normed_mults))))
 
-      if train_auc > best_train_auc:  # Found new best.
-        best_train_auc = train_auc
+      if train_loss < best_train_loss:  # Found new best.
+        best_train_loss = train_loss
 
         # Memorize variables.
         best_train_values = sess.run(all_variables)
