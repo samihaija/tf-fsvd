@@ -128,3 +128,12 @@ The script `experiments/planetoid_hp_search.py` directly invokes `implementation
 
     python3 experiments/plot_sweep_depth_planetoid.py
 
+
+### Link Prediction for measuring HITS@20 for Drug-Drug Interactions Network
+
+You can run our method like:
+
+    python3 implementations/linkpred_ddi.py
+
+This averages 10 runs (by default) and prints mean and standard deviation of validation and test metric (HITS@20)
+
